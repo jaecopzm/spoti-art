@@ -114,7 +114,7 @@ export default function Home() {
         {/* Search Results */}
         {searchResults && (
           <>
-            {filters.type === 'album' && searchResults.albums?.items.length > 0 && (
+            {filters.type === 'album' && searchResults.albums?.items && searchResults.albums.items.length > 0 && (
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                   Found {searchResults.albums.items.length} albums
@@ -131,7 +131,7 @@ export default function Home() {
               </div>
             )}
             
-            {filters.type === 'artist' && searchResults.artists?.items.length > 0 && (
+            {filters.type === 'artist' && searchResults.artists?.items && searchResults.artists.items.length > 0 && (
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                   Found {searchResults.artists.items.length} artists
@@ -166,7 +166,7 @@ export default function Home() {
               </div>
             )}
 
-            {filters.type === 'track' && searchResults.tracks?.items.length > 0 && (
+            {filters.type === 'track' && searchResults.tracks?.items && searchResults.tracks.items.length > 0 && (
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                   Found {searchResults.tracks.items.length} tracks
@@ -183,7 +183,7 @@ export default function Home() {
               </div>
             )}
 
-            {filters.type === 'playlist' && searchResults.playlists?.items.length > 0 && (
+            {filters.type === 'playlist' && searchResults.playlists?.items && searchResults.playlists.items.length > 0 && (
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
                   Found {searchResults.playlists.items.length} playlists
@@ -204,10 +204,10 @@ export default function Home() {
 
         {/* No Results */}
         {searchResults && (
-          (filters.type === 'album' && searchResults.albums?.items.length === 0) ||
-          (filters.type === 'artist' && searchResults.artists?.items.length === 0) ||
-          (filters.type === 'track' && searchResults.tracks?.items.length === 0) ||
-          (filters.type === 'playlist' && searchResults.playlists?.items.length === 0)
+          (filters.type === 'album' && (!searchResults.albums?.items || searchResults.albums.items.length === 0)) ||
+          (filters.type === 'artist' && (!searchResults.artists?.items || searchResults.artists.items.length === 0)) ||
+          (filters.type === 'track' && (!searchResults.tracks?.items || searchResults.tracks.items.length === 0)) ||
+          (filters.type === 'playlist' && (!searchResults.playlists?.items || searchResults.playlists.items.length === 0))
         ) && (
           <div className="text-center py-12">
             <Music2 className="w-16 h-16 text-gray-300 mx-auto mb-4" />
